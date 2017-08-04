@@ -1,0 +1,21 @@
+DROP USER IF EXISTS cmssuper;
+DROP DATABASE IF EXISTS cms;
+
+CREATE USER cmssuper WITH ENCRYPTED PASSWORD 'georgebush';
+CREATE DATABASE cms WITH OWNER 'cmssuper';
+
+\c cms cmssuper
+
+CREATE TABLE articles (
+  id SERIAL NOT NULL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  body TEXT DEFAULT NULL,
+  author VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE products (
+  id SERIAL NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  price VARCHAR(10) NOT NULL,
+  inventory VARCHAR(10) NOT NULL
+);
