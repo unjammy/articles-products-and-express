@@ -4,6 +4,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const helpers = require('./lib/helpers.js');
 
+const home = require('./routes/home.js');
+
 const app = express();
 
 const hbs = exphbs.create({
@@ -18,18 +20,7 @@ const hbs = exphbs.create({
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/', function(req, res) {
-  res.render('home', {
-    title: 'Home.'
-  });
-});
-
-app.get('/test-page', function(req, res) {
-  res.render('test-page', {
-    title: 'Test.',
-    message: 'I am punctuated'
-  });
-});
+app.use('/', home);
 
 app.listen(3000, function(){
   console.log('express-handlebars server listening on 3000');
